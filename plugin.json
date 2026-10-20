@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rentahuman",
+  "version": "3.16.1",
+  "description": "Find people and coordinate real-world work through RentAHuman.",
+  "author": {
+    "name": "RentAHuman",
+    "url": "https://rentahuman.ai"
+  },
+  "homepage": "https://rentahuman.ai/docs",
+  "repository": "https://github.com/rentahuman-ai/hermes-plugin",
+  "license": "MIT",
+  "keywords": [
+    "rentahuman",
+    "human-in-the-loop",
+    "marketplace",
+    "mcp",
+    "real-world-tasks"
+  ],
+  "extensions": {
+    "com.nousresearch.hermes": {
+      "servers": {
+        "rentahuman": {
+          "trust": "untrusted"
+        }
+      }
+    }
+  }
+}

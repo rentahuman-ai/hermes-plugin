@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "rentahuman": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "rentahuman-mcp@3.16.1"],
+      "env": {
+        "RENTAHUMAN_API_KEY": "${RENTAHUMAN_API_KEY}"
+      }
+    }
+  }
+}
