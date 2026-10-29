@@ -4,7 +4,7 @@
     "rentahuman": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "rentahuman-mcp@4.4.0"],
+      "args": ["-y", "rentahuman-mcp@4.5.0"],
       "env": {
         "RENTAHUMAN_API_KEY": "${RENTAHUMAN_API_KEY}"
       }
