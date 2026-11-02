@@ -37,6 +37,20 @@ The MCP server runs locally through `npx`; marketplace requests go to
 `https://rentahuman.ai/api`. The API key stays in the Hermes profile and is
 passed to the MCP subprocess through the environment.
 
+## Usage attribution
+
+The plugin sets `RENTAHUMAN_INTEGRATION_SOURCE=hermes_plugin` for the MCP
+server. The server then sends the header
+`X-RentAHuman-Integration-Source: hermes_plugin` to `rentahuman.ai` on the API
+requests your tool calls make. It is not sent at startup. It adds no network
+destination and no credential. RentAHuman uses it to count how many accounts
+use RentAHuman through Hermes, and to label bounties and service bookings
+created this way through funding, completion and payment. The label is
+self-reported: it is not identity and grants no access. It never changes which
+account is used, what you can do, or what you pay. The attribution data does
+not include your prompts, tool arguments or results, IP address, or user agent.
+To opt out, delete that `env` entry from the installed plugin's `mcp.json`.
+
 Use either this plugin or the `hermes mcp install rentahuman` remote server in
 a profile, not both. Both register a server named `rentahuman`, and Hermes
 skips this plugin's server when the other is configured.
