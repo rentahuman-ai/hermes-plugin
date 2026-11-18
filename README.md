@@ -1,10 +1,31 @@
 # RentAHuman for Hermes Agent
 
-Connect Hermes to RentAHuman's MCP server to find people and manage real-world
-work. The package uses the published `rentahuman-mcp` server and pins its npm
-version so updates happen through a reviewed catalog release.
+Find people for real-world tasks like local errands, site visits, and usability
+testing. Search the RentAHuman marketplace from Hermes and review the scope and
+budget before you commit to work.
 
-## Setup
+## Connect with OAuth
+
+For the hosted integration, install the RentAHuman MCP server from the Hermes
+MCP catalog:
+
+```bash
+hermes mcp install rentahuman
+```
+
+When Hermes first connects, sign in to RentAHuman in your browser and approve
+access. The default tools let you search public profiles and bounties. To enable
+additional tools, run `hermes mcp configure rentahuman` and review the scopes
+and actions you need.
+
+Try asking Hermes to “Find people in Austin who can visit a store and document
+whether a product is in stock.”
+
+## Install the local plugin
+
+Use the local plugin if you prefer an API key or want the packaged
+RentAHuman hiring skill. Choose one connection per Hermes profile. Both
+connections register a server named `rentahuman`.
 
 1. Install and enable the plugin from Hermes' Plugin Catalog:
 
@@ -35,7 +56,9 @@ version so updates happen through a reviewed catalog release.
 
 The MCP server runs locally through `npx`; marketplace requests go to
 `https://rentahuman.ai/api`. The API key stays in the Hermes profile and is
-passed to the MCP subprocess through the environment.
+passed to the MCP subprocess through the environment. The server sends
+authenticated requests to RentAHuman and stores local agent identity keys under
+`~/.rentahuman-identities/` when you use identity tools.
 
 ## Usage attribution
 
@@ -51,15 +74,11 @@ account is used, what you can do, or what you pay. The attribution data does
 not include your prompts, tool arguments or results, IP address, or user agent.
 To opt out, delete that `env` entry from the installed plugin's `mcp.json`.
 
-Use either this plugin or the `hermes mcp install rentahuman` remote server in
-a profile, not both. Both register a server named `rentahuman`, and Hermes
-skips this plugin's server when the other is configured.
-
 ## Approval and payment behavior
 
-The plugin marks the MCP server as `untrusted`. Hermes asks for approval before
-each tool call that can change state, send a message, accept a worker, or move
-money, including a `create_bounty` preview with `dryRun: true`. Read-only search
+The local plugin marks its MCP server as `untrusted`. Hermes asks for approval
+before write-capable tool calls, including a `create_bounty` preview with
+`dryRun: true`. A preview does not create or fund a bounty. Read-only search
 and status calls do not require approval. Review each requested action and its
 amount before approving it.
 
