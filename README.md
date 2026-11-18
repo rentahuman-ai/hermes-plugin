@@ -14,9 +14,10 @@ hermes mcp install rentahuman
 ```
 
 When Hermes first connects, sign in to RentAHuman in your browser and approve
-access. The default tools let you search public profiles and bounties. To enable
-additional tools, run `hermes mcp configure rentahuman` and review the scopes
-and actions you need.
+access. The default tools let you search public profiles and open bounties.
+Run `hermes mcp configure rentahuman` to review your tool selection. If you
+installed before the v2 catalog update, select `list_humans` for people
+search and `search_bounties` for open bounties.
 
 Try asking Hermes to “Find people in Austin who can visit a store and document
 whether a product is in stock.”
@@ -56,9 +57,10 @@ connections register a server named `rentahuman`.
 
 The MCP server runs locally through `npx`; marketplace requests go to
 `https://rentahuman.ai/api`. The API key stays in the Hermes profile and is
-passed to the MCP subprocess through the environment. The server sends
-authenticated requests to RentAHuman and stores local agent identity keys under
-`~/.rentahuman-identities/` when you use identity tools.
+passed to the MCP subprocess through the environment. The server stores local
+agent identity keys under `~/.rentahuman-identities/`. With an API key
+configured, it registers the agent identity with RentAHuman at startup by
+sending the public key and a signature. The private key stays on your device.
 
 ## Usage attribution
 
